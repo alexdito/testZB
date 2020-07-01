@@ -36,12 +36,12 @@ Loc::loadLanguageFile(__FILE__);
             <div class="g-recaptcha" data-sitekey="<?= Option::get('alexd.api', 'PUBLIC_KEY', ''); ?>"></div>
             <input name="ajax" type="hidden" value="Y">
         </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" id="sendResult">Отправить</button>
-      </div>
     </div>
-  </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" id="sendResult">Отправить</button>
+        </div>
+    </div>
+</div>
 
 <div id="modalError" class="modal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
