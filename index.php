@@ -1,30 +1,62 @@
-<?
-require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetTitle("Мебельная компания");
-?><p>
-Наша компания существует на Российском рынке с 1992 года. За это время «Мебельная компания» прошла большой путь от маленькой торговой фирмы до одного из крупнейших производителей корпусной мебели в России.
-</p><p>
-«Мебельная компания» осуществляет производство мебели на высококлассном оборудовании с применением минимальной доли ручного труда, что позволяет обеспечить высокое качество нашей продукции. Налажен производственный процесс как массового и индивидуального характера, что с одной стороны позволяет обеспечить постоянную номенклатуру изделий и индивидуальный подход – с другой.
-<h3>Наша продукция</h3>
-<?$APPLICATION->IncludeComponent("bitrix:furniture.catalog.index", "", array(
-	"IBLOCK_TYPE" => "products",
-	"IBLOCK_ID" => "2",
-	"IBLOCK_BINDING" => "section",
-	"CACHE_TYPE" => "A",
-	"CACHE_TIME" => "36000000",
-	"CACHE_GROUPS" => "N"
-	),
-	false
-);?>
-<h3>Наши услуги</h3>
-<?$APPLICATION->IncludeComponent("bitrix:furniture.catalog.index", "", array(
-	"IBLOCK_TYPE" => "products",
-	"IBLOCK_ID" => "3",
-	"IBLOCK_BINDING" => "element",
-	"CACHE_TYPE" => "A",
-	"CACHE_TIME" => "36000000",
-	"CACHE_GROUPS" => "N"
-	),
-	false
-);?>
-</p><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
+<? require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php"); ?>
+<? $APPLICATION->SetTitle("Главная страница");
+use Bitrix\Main\Loader;
+?>
+<div class="bd-example">
+    <h2>Добавить отзыв о компании</h2>
+    <hr>
+    <form>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Имя</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Фамилия</label>
+            <input type="password" class="form-control" id="exampleInputPassword1">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">E-mail</label>
+            <input type="password" class="form-control" id="exampleInputPassword1">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Телефон</label>
+            <input type="password" class="form-control" id="exampleInputPassword1">
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Текст сообщения</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+            <button type="button" class="btn btn-primary btn-lg btn-block">Добавить отзыв</button>
+        </div>
+    </form>
+</div>
+<hr>
+<h2>Отзывы</h2>
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+</div>
+<?php
+Loader::includeModule("iblock");
+
+
+?>
+<? require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php"); ?>
