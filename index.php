@@ -2,35 +2,27 @@
 <? $APPLICATION->SetTitle("Главная страница");
 use Bitrix\Main\Loader;
 ?>
-<div class="bd-example">
-    <h2>Добавить отзыв о компании</h2>
-    <hr>
-    <form>
-        <div class="form-group">
-            <label for="exampleInputEmail1">Имя</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-        </div>
-        <div class="form-group">
-            <label for="exampleInputPassword1">Фамилия</label>
-            <input type="password" class="form-control" id="exampleInputPassword1">
-        </div>
-        <div class="form-group">
-            <label for="exampleInputPassword1">E-mail</label>
-            <input type="password" class="form-control" id="exampleInputPassword1">
-        </div>
-        <div class="form-group">
-            <label for="exampleInputPassword1">Телефон</label>
-            <input type="password" class="form-control" id="exampleInputPassword1">
-        </div>
-        <div class="form-group">
-            <label for="exampleFormControlTextarea1">Текст сообщения</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-        </div>
-        <div class="form-group">
-            <button type="button" class="btn btn-primary btn-lg btn-block">Добавить отзыв</button>
-        </div>
-    </form>
-</div>
+<?php
+Loader::includeModule("iblock");
+$el = new CIBlockElement;
+
+$arFields =[
+    'ACTIVE' => 'Y',
+    "IBLOCK_ID" => 18,
+    'NAME' => 'asdfadsfafadfafa',
+    'PROPERTY_VALUES' => [
+        'FIRST_NAME' => 'fdgsg',
+        'SECOND_NAME' => 'sfdgsfdgsg',
+        'PHONE' => 'afadfadf',
+        'EMAIL' => 'dsfafaf',
+        'MESSAGE' => 'asdadfasdfafas'
+    ]
+];
+if($elementId = $el->Add($arFields))
+    echo "New ID: ".$elementId;
+else
+    echo "Error: ".$el->LAST_ERROR;
+?>
 <hr>
 <h2>Отзывы</h2>
 <div class="card">

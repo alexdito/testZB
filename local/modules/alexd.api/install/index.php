@@ -128,7 +128,8 @@ Class alexd_api extends CModule
                 'SECOND_NAME' => 'Фамилия',
                 'PHONE' => 'Номер телефона',
                 'EMAIL' => 'Email',
-                'MESSAGE' => 'Текст сообщения'
+                'MESSAGE' => 'Текст сообщения',
+                'SHOW' => 'Отображать отзыв'
             ];
             foreach ($needFields as $code => $name) {
                 $arFields = [
@@ -144,6 +145,10 @@ Class alexd_api extends CModule
                 ];
                 if($code == 'MESSAGE') {
                     $arFields['ROW_COUNT'] = 3;
+                }
+                if($code == 'SHOW') {
+                    $arFields['PROPERTY_TYPE'] = 'L';
+                    $arFields['LIST_TYPE'] = 'C';
                 }
                 $propId = $ibp->Add($arFields);
                 if ($propId > 0) {
