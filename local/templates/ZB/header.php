@@ -20,14 +20,3 @@
 <div id="panel"><?$APPLICATION->ShowPanel();?></div>
 
 <div style="text-align: left" class="container">
-    <ul class="nav nav-tabs">
-        <li class="nav-item">
-            <a class="nav-link active" href="/">Главная страница</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/">Добавить отзыв</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/">Отзывы о компании</a>
-        </li>
-    </ul>
