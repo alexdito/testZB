@@ -15,7 +15,7 @@ $(document).ready(function () {
             data: values,
             success: function (data) {
                 if ($.parseJSON(data) == null) {
-                    $('.errors').text('');
+                    $('.errors').empty();
                     $('form').trigger('reset');
                     grecaptcha.reset();
                 } else {

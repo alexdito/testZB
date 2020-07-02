@@ -24,7 +24,7 @@ class FormFeedbackComponent extends CBitrixComponent
             'IBLOCK_TYPE' => trim($params['IBLOCK_TYPE']),
             'IBLOCK_ID' => trim($params['IBLOCK_ID']),
             'IBLOCK_CODE' => trim($params['IBLOCK_CODE']),
-            'AJAX' => $_REQUEST['ajax']
+            'AJAX' => $params['ajax']
         ];
 
         return $result;
@@ -48,8 +48,8 @@ class FormFeedbackComponent extends CBitrixComponent
 
     protected function addFeedback()
     {
-
-        if(empty(trim(htmlspecialchars($_REQUEST['firstName']))) || empty(trim(htmlspecialchars($_REQUEST['secondName'])))) {
+        //Делаем проверку на заполнение обязательных полей
+        if(empty(trim(htmlspecialchars($_REQUEST['firstName']))) && empty(trim(htmlspecialchars($_REQUEST['secondName'])))) {
             $mes[] = 'Не заполнено имя';
         }
 
@@ -60,8 +60,7 @@ class FormFeedbackComponent extends CBitrixComponent
         if(!filter_var($_REQUEST['email'], FILTER_VALIDATE_EMAIL)) {
             $mes[] = 'Email указан неверно';
         }
-
-
+        //Сначала проверяем были ли ошибки, чтобы не перезагружать reCaptcha каждый раз
         if (empty($mes)) {
             $recaptcha = new \ReCaptcha\ReCaptcha(Option::get('alexd.api', 'SECRET_KEY', ''));
             $resp = $recaptcha->setExpectedHostname('192.168.42.76')
@@ -73,9 +72,11 @@ class FormFeedbackComponent extends CBitrixComponent
 
         if (empty($mes)) {
             $data = [
-                'PROPERTY_FIRST_NAME'=> trim(htmlspecialchars($_REQUEST['firstName'])),
-                'PROPERTY_SECOND_NAME'=> trim(htmlspecialchars($_REQUEST['secondName'])),
-                'PROPERTY_MESSAGE'=> trim(htmlspecialchars($_REQUEST['message'])),
+                'FIRST_NAME'=> trim(htmlspecialchars($_REQUEST['firstName'])),
+                'SECOND_NAME'=> trim(htmlspecialchars($_REQUEST['secondName'])),
+                'PHONE' => htmlspecialchars($_REQUEST['phone']),
+                'EMAIL' => trim(htmlspecialchars($_REQUEST['EMAIL'])),
+                'MESSAGE'=> trim(htmlspecialchars($_REQUEST['message'])),
             ];
 
             $el = new CIBlockElement;
@@ -83,13 +84,13 @@ class FormFeedbackComponent extends CBitrixComponent
             $arFields =[
                 'ACTIVE' => 'Y',
                 'IBLOCK_ID' => $this->arParams['IBLOCK_ID'],
-                'NAME' => $data['PROPERTY_FIRST_NAME'] . ' ' . $data['PROPERTY_SECOND_NAME'],
+                'NAME' => 'Отзыв от: ' . $data['FIRST_NAME'] . ' ' . $data['SECOND_NAME'],
                 'PROPERTY_VALUES' => [
-                    'FIRST_NAME' => $_REQUEST['firstName'],
-                    'SECOND_NAME' => $_REQUEST['secondName'],
-                    'PHONE' => $_REQUEST['phone'],
-                    'EMAIL' => $_REQUEST['email'],
-                    'MESSAGE' => $_REQUEST['message']
+                    'FIRST_NAME' => $data['FIRST_NAME'],
+                    'SECOND_NAME' => $data['SECOND_NAME'],
+                    'PHONE' => $data['PHONE'],
+                    'EMAIL' => $data['EMAIL'],
+                    'MESSAGE' => $data['MESSAGE']
                 ]
             ];
 

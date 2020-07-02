@@ -8,7 +8,7 @@ Loc::loadLanguageFile(__FILE__);
 <div class="modal-dialog" role="document">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Обратная связь</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Добавление отзыва о компании</h5>
         </div>
     <div class="modal-body">
         <form action="<?= $APPLICATION->GetCurDir(); ?>" id="form-data">

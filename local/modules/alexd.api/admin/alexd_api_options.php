@@ -26,7 +26,7 @@ if(isset($_POST['GOOGLE_API'])) {
 
 <form action="<?=POST_FORM_ACTION_URI?>" method="post">
     <table>
-        <td>Текст отмены регулярных платежей для ПК: </td>
+        <td>Ключи для Google reCaptcha: </td>
         <tr>
             <td>Google API Key: </td>
             <td>
